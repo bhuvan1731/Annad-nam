@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #4da1ac, #eaf4fc);
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #593e97b7;
+            font-size: 1.8rem;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fdf6f6;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #af904c;
+            background-color: #fff;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-container a {
+            color: #b43173;
+            text-decoration: underline;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0c5064;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Food Donation Registration Form</h1>
+        <form>
+            <label for="org-name">Organization Name*</label>
+            <input type="text" id="org-name" name="org-name" placeholder="Restaurant or Storage Company Name" required>
+
+            <label for="contact-person">Contact Person*</label>
+            <input type="text" id="contact-person" name="contact-person" placeholder="Full Name" required>
+
+            <label for="phone">Contact Number*</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+            <label for="email">E-mail*</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="address">Address*</label>
+            <input type="text" id="address" name="address" placeholder="Street Address" required>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="state" name="state" placeholder="State / Province" required>
+            <input type="text" id="zip" name="zip" placeholder="Postal / Zip Code" required>
+
+            <label for="food-type">Type of Food Donated*</label>
+            <select id="food-type" name="food-type" required>
+                <option value="">Select Food Type</option>
+                <option value="perishable">Perishable (e.g., fruits, vegetables, cooked food)</option>
+                <option value="non-perishable">Non-perishable (e.g., canned goods, dry grains)</option>
+                <option value="packaged-meals">Packaged Meals</option>
+                <option value="beverages">Beverages</option>
+            </select>
+
+            <label for="quantity">Quantity (approx.)*</label>
+            <input type="text" id="quantity" name="quantity" placeholder="E.g., 50 kg, 100 meals, etc." required>
+
+            <label for="pickup-date">Preferred Pickup Date*</label>
+            <input type="date" id="pickup-date" name="pickup-date" required>
+
+            <label for="pickup-time">Preferred Pickup Time*</label>
+            <input type="time" id="pickup-time" name="pickup-time" required>
+
+            <label for="comments">Any Special Instructions or Comments</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Write your comments here..."></textarea>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+            </div>
+
+            <button type="submit">Register Donation</button>
+        </form>
+    </div>
+</body>
+
+</html>

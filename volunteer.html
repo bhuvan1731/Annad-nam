@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            border-radius: 12px;
+            background: rgba(241, 241, 241, 0.767);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #32215ae3;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f9f9f9;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border: 1px solid #8b1a69;
+            outline: none;
+            background: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .preferences {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Volunteer Registration Form</h1>
+        <p>Let us know your area of interest in volunteering. We’ll get back to you soon!</p>
+        <form>
+            <label for="first-name">First Name*</label>
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+
+            <label for="last-name">Last Name*</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Street Address">
+            <input type="text" id="address-line2" name="address-line2" placeholder="Street Address Line 2">
+            <input type="text" id="city" name="city" placeholder="City">
+            <input type="text" id="state" name="state" placeholder="State / Province">
+            <input type="text" id="zip" name="zip" placeholder="Postal / Zip Code">
+
+            <label for="email">E-mail*</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="phone">Phone Number*</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+            <label>Preferences in Area of Volunteering</label>
+            <div class="preferences">
+                <select name="lb-nagar" required>
+                    <option value="">Select an Area</option>
+                    <option value="LB NAGAR">LB NAGAR</option>
+                    <option value="SECUNDERABAD">SECUNDERABAD</option>
+                    <option value="PATENCHERUVU">PATENCHERUVU</option>
+                    <option value="ALWAL">ALWAL</option>
+                    <option value="BANJARA HILLS">BANJARA HILLS</option>
+                </select>
+            </div>
+
+            <label>Preferences in Shifts</label>
+            <div class="preferences">
+                <select name="shift" required>
+                    <option value="">Select a Shift</option>
+                    <option value="8am-1pm">8am - 1pm</option>
+                    <option value="1pm-6pm">1pm - 6pm</option>
+                    <option value="6pm-11pm">6pm - 11pm</option>
+                </select>
+            </div>
+
+            <label for="comments">Any Special Comments</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Write your comments here..."></textarea>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#" style="color: #226888; text-decoration: underline;">Terms and Conditions</a></label>
+            </div>
+
+            <button type="submit">Submit Form</button>
+        </form>
+    </div>
+</body>
+
+</html>

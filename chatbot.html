@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chatbot</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: transparent; /* Transparent background */
+        }
+
+        #chatbot-container {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Adds a blur effect to the background */
+            width: 300px;
+            height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header {
+            background-color: rgb(0, 8, 11);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        #chat {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin: 5px 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message p {
+            background-color: #0f9df0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            max-width: 70%;
+        }
+
+        .message.user p {
+            background-color: #0078d7;
+            color: white;
+        }
+
+        .option-button {
+            margin: 2px;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: skyblue;
+            color: white;
+        }
+
+        .option-button:hover {
+            background-color: #005bb5;
+        }
+
+        .refresh-button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: skyblue;
+            color: white;
+            align-self: center;
+        }
+
+        .refresh-button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbot-container">
+        <div id="header">Chatbot Assistant</div>
+        <div id="chat"></div>
+        <button id="startButton" class="refresh-button">Start Chat</button>
+    </div>
+
+    <script>
+    
+      
+      const mainMenu= [
+        {
+          question: "1.What is the purpose of this project ANNADANAM?",
+          answer: " To reduce food waste, enhance distribution efficiency, and promote sustainability for societal and environmental benefit.",
+          
+        },
+        {
+          question: "2. What is the type of food that is to be taken?",
+          answer: "Fresh produce, packaged goods, dairy, grains, baked items, canned food, and surplus from retailers.",
+          
+          
+        },
+        {
+          question: "3.How can I participate in this?",
+          answer: "Volunteer, donate surplus food, adopt sustainable practices, partner with organizations, and advocate against food waste.",
+          
+          
+        },
+        {
+          question: "4. How to register in this ANNADANAM?",
+          answer: "Visit the project website, complete the registration form, verify email, and submit required details.",
+          
+          
+        },
+        {
+          question: "5. What are the long-term goals of the ANNADANAM?",
+          answer: "To create a sustainable, zero-waste food distribution model that can be replicated globally, ensuring no food goes to waste while addressing hunger and promoting community well-being.",
+          
+        },
+        {
+          question: "6.How can I donate to the ANNADANAM?",
+          answer: "You can donate money, surplus food, or volunteer your time through the ANNADANAM website or by contacting local partnering organizations.",
+          
+        },
+        {
+          question: "7.How does ANNADANAM contribute to sustainability?",
+          answer: "ANNADANAM promotes responsible consumption, reduces food waste, and ensures that surplus food is utilized to support communities rather than going to landfills.",
+          
+        },
+        {
+          question: "8.How do we assign points?",
+          answer: "Points are assigned based on specific criteria such as participation, contribution, or task completion.",
+          
+        },
+        {
+          question: "9.What happens to my food after sent?",
+          answer: "Your food is collected, sorted, and distributed to those in need through community programs.",
+         
+        },
+        {
+          question: "10. How rewards get evaluated?",
+          answer: "Rewards are evaluated based on contribution, impact, consistency, and adherence to guidelines.",
+          
+        },
+       
+         
+      
+        {
+          question: "Having More Questions?",
+          answer: "Reach Any Query Section",
+         
+        },
+      
+      ];
+      
+      const questionsSet2 = [
+        {
+          question: "This is a placeholder for option 2 questions.",
+          answer: "Option 2 response goes here.",
+          options: [
+            { answer: "Go back to main menu", next: 'mainMenu' }
+          ]
+        }
+      ];
+      
+      const questionsSet3 = [
+        {
+          question: "This is a placeholder for option 3 questions.",
+          answer: "Option 3 response goes here.",
+          options: [
+            { answer: "Go back to main menu", next: 'mainMenu' }
+          ]
+        }
+      ];
+      
+      let currentQuestionIndex = null;
+
+      function createQuestionButton(question, index, set) {
+        const button = document.createElement("button");
+        button.textContent = question.question;
+        button.className = "option-button";
+        
+        button.addEventListener("click", () => {
+          displayMessage(question.answer, "answer");
+          handleOptionClick(question.options[0].next, set);
+        });
+        
+        return button;
+      }
+
+      function handleOptionClick(nextIndex, set) {
+        if (nextIndex === 'set1') {
+          loadQuestions(questionsSet1);
+        } else if (nextIndex === 'set2') {
+          loadQuestions(questionsSet2);
+        } else if (nextIndex === 'set3') {
+          loadQuestions(questionsSet3);
+        } else if (nextIndex === 'mainMenu') {
+          loadQuestions(mainMenu);
+        }
+      }
+
+      function displayMessage(message, sender) {
+        const messageElement = document.createElement("div");
+        messageElement.className = `message ${sender}`;
+        messageElement.innerHTML = `<p>${message}</p>`;
+        document.getElementById("chat").appendChild(messageElement);
+        document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+      }
+
+      function loadQuestions(set) {
+        const chat = document.getElementById("chat");
+        chat.innerHTML = ''; // Clear previous messages
+        
+        set.forEach((question, index) => {
+          const button = createQuestionButton(question, index, set);
+          chat.appendChild(button);
+        });
+      }
+
+      // Automatically show the welcome message when the page loads
+      window.onload = function() {
+        displayMessage("Hello! 👋🏻 Ready to chat?", "answer"); // Show the greeting message
+        document.getElementById("startButton").style.display = "block"; // Show the start button
+      };
+
+      // When the user clicks the "Start Chat" button, the questions appear
+      document.getElementById("startButton").addEventListener("click", () => {
+        loadQuestions(mainMenu); // Load the questions from the main menu
+        document.getElementById("startButton").style.display = "none"; // Hide the start button
+      });
+    </script>
+</body>
+</html>

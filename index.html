@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .floating-button {
+            position: fixed; /* Fixed position to keep it in view */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            background-color: #45a0d4; /* Button color */
+            color: white; /* Text color */
+            padding: 15px 20px; /* Padding */
+            border: none; /* No border */
+            border-radius: 50%; /* Circular shape */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 24px; /* Font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            transition: background-color 0.3s; /* Transition for hover effect */
+            text-align: center; /* Center text */
+            text-decoration: none; /* No underline */
+        }
+        .floating-button:hover {
+            background-color: #61c8da; /* Darker color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">अन्नदानम्</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#" onclick="showContent('home')">HOME</a></li>
+                    <li><a href="#" onclick="showContent('donate')">DONATE</a></li>
+                    <li><a href="#" onclick="showContent('centers')">CENTERS</a></li>
+                    <li><a href="#" onclick="showContent('map')">MAPS</a></li>
+                    <li><a href="#" onclick="showContent('registration')">REGISTER</a></li>
+                    <li><a href="#" onclick="showContent('join')">JOIN US</a></li>
+                    <li><a href="#" onclick="showContent('content')">CONTACT</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1 id="header">अन्नदानम् <br><span>-Annadānam</span></h1>
+            <p id="paragraph">अन्नं मा व्ययः। -Do not waste food.</p>
+            <button class="donate-now-button" onclick="openDonatePage()">Donate Now</button>
+            <!-- Donate Section -->
+            <div id="donate-section" class="form-container" style="display: none;">
+                <div>
+                    <h2>Donate Food</h2>
+                    <p>Please donate food to help those in need.</p>
+                </div>
+            </div>
+
+            <!-- Centers Section -->
+            <div id="centers-section" style="display: none;">
+                <h2>Our Centers</h2>
+                <div id="center-list">
+                    <div class="center-item" onclick="showCenterDetails('LB Nagar')">LB Nagar</div>
+                    <div class="center-item" onclick="showCenterDetails('Alwal')">Alwal</div>
+                    <div class="center-item" onclick="showCenterDetails('Secunderabad')">Secunderabad</div>
+                    <div class="center-item" onclick="showCenterDetails('Banjara Hills')">Banjara Hills</div>
+                    <div class="center-item" onclick="showCenterDetails('Patancheruvu')">Patancheruvu</div>
+                </div>
+            
+                <div id="center-details-container" style="display: none;">
+                    <!-- Details will be dynamically inserted here -->
+                </div>
+            </div>
+            
+            
+            
+            
+
+            <div class="map-buttons" id="map-buttons" style="display: none;">
+                <h2>Centers Directions</h2>
+                <div class="button-container">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=LB+Nagar,+Hyderabad" target="_blank" class="map-link">LB Nagar</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Alwal,+Hyderabad" target="_blank" class="map-link">Alwal</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Secunderabad,+Hyderabad" target="_blank" class="map-link">Secunderabad</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Banjara+Hills,+Hyderabad" target="_blank" class="map-link">Banjara Hills</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Patancheruvu,+Hyderabad" target="_blank" class="map-link">Patancheruvu</a>
+                </div>
+            </div>
+            
+            
+
+            <!-- Registration Form -->
+            <div id="registration-section" class="form-container" style="display: none;">
+                <h2 class="form-header">Create Your Account</h2>
+                <form action="connect.php" method="post" class="registration-form">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Phone Number</label>
+                        <input type="text" id="number" name="number" class="form-control" required />
+                    </div>
+                    <button type="submit" class="submit-btn">Register</button>
+                </form>
+            </div>
+            
+            <div id="join-us-section" style="display: none;">
+                <h2>Join Us</h2>
+                <p>Choose a role to get started:</p>
+                <div class="join-us-buttons">
+                    <a href="volunteer.html" class="join-us-button" onclick="joinAsVolunteer()">Join as Volunteer</a>
+                    <a href="member.html" class="join-us-button" onclick="joinAsMember()">Join as Member</a>
+                </div>
+                <div class="dropdown-section">
+                    <h3 onclick="toggleDropdown()" style="cursor: pointer;">Download Agreements ▼</h3>
+                    <ul id="dropdown-content" style="display: none; list-style: none; padding: 0;">
+                        <li><a href="store.pdf" download>Food Storage Agreement</a></li>
+                        <li><a href="AGREEMENT.pdf" download>Restaurent Agreement</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content-section" style="display: none;">
+                <h2>Organization Details</h2>
+                <p>We aim to provide food to the needy and reduce food waste. Below are the details of our centers and volunteers:</p>
+                
+                <h3>Center Details</h3>
+                <ul>
+                    <li><strong>LB Nagar:</strong> Volunteer: ADI, Phone: 1234567890</li>
+                    <li><strong>Alwal:</strong> Volunteer: BHUVI, Phone: 9876543210</li>
+                    <li><strong>Secunderabad:</strong> Volunteer: CHARAN, Phone: 4567891230</li>
+                    <li><strong>Banjara Hills:</strong> Volunteer: DHRUV, Phone: 6543219870</li>
+                    <li><strong>Patancheruvu:</strong> Volunteer: ESHWAR, Phone: 7418529630</li>
+                </ul>
+            
+                <h3>Query Section</h3>
+                <form id="query-form">
+                    <div class="form-group">
+                        <label for="query-name">Name</label>
+                        <input type="text" id="query-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="query-email">Email</label>
+                        <input type="email" id="query-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="query-message">Message</label>
+                        <textarea id="query-message" name="message" required></textarea>
+                    </div>
+                    <button type="button" onclick="submitQuery()">Submit</button>
+                </form>
+            </div>
+            
+            
+            
+            
+        </div>
+        <a href="chatbot.html" class="floating-button">FAQ's</a>
+
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <script src="script.js"></script>
+    </div>
